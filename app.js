@@ -33,6 +33,6 @@ const toArray2 = (...args) => { // but wih rest operator we can make it flexible
   return args;
 };
 
-console.log(toArray2(1,2,3,4)); //so, the rest operator syntex is same as spread
-//operator, but it is used in the function argument to merge insead of pulling out the
+console.log(toArray2(1,2,3,4)); //so, the rest operator syntex is same as spread operator, but it
+//is used in the function argument to merge an element to that array insead of pulling out the
 //existing elemnent of an object or array which is the case of spread operator.
