@@ -5,34 +5,36 @@ const person = {
     console.log('Hi, I am ' + this.name);
   }
 };
+
 const activies = ['Eat', 'Play'];
 
-activies.push('Sleep');
-console.log(activies);
-
-const copiedArray = activies.slice(); //copied in a new array in immutable way not chaging the old one
-console.log(copiedArray);
-
-const copiedArray2 = [activies]; //it just copied the old array as new item of the new array
-console.log(copiedArray2);
-
-const copiedArray3 = [...activies]; //spread operator. it put the whole old array in the new array
-console.log(copiedArray3);
+const printName=(personData) => {
+  console.log(personData.name);
+}
+printName(person);
 
 
-const copiedPerson = {...person}; //spread operator. it put the whole old OBJECT in the new OBJECT
-console.log(copiedPerson);
+const printNameWithDestructuring=({name}) => {
+  console.log(name);
+}
+//Destructuring in function
+//We are not interest the whole object we are getting (ex, from somewhere)
+//We are only interested one property of that object
+//destructuring syntax is feature to read that specific property;
+//it makes the code more understandable
+printNameWithDestructuring(person);
 
-const toArray = (arg1, arg2, arg3) => {
-  return [arg1, arg2, arg3];
-};
 
-console.log(toArray(1,2,3,4)); //this not gonna return the last arg 4
+const {name, age} = person;
+console.log(name,age);
+//Object destructuring
+//for object destructuring we will use same name variable in the curly
+//braces that we wnat to bring out of the array. By this it will create necessary number of
+//vriables that we can use later.
 
-const toArray2 = (...args) => { // but wih rest operator we can make it flexible
-  return args;
-};
 
-console.log(toArray2(1,2,3,4)); //so, the rest operator syntex is same as spread operator, but it
-//is used in the function argument to merge an element to that array insead of pulling out the
-//existing elemnent of an object or array which is the case of spread operator.
+const [activities1, activities2] =  activies;//Arrayt Desturtering
+console.log(activities1, activities2);
+//vairable/array destructuring. Instead of curly braces we will square bracket.
+//in array we can choose any name we want. Because in array the element has no name.
+//the variable will assing to the value based on the element position
