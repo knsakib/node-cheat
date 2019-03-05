@@ -1,24 +1,16 @@
-const activities = ['Eat', 'Play'];
+const person = {
+  name: 'Zabeer',
+  age: 2,
+  greet(){
+    console.log('Hi, I am ' + this.name);
+  }
+};
+const activies = ['Eat', 'Play'];
 
-for (let activity in activities) {
-  console.log(activity);
-}
+activies.push('Sleep');
+console.log(activies);
 
-for (let activity of activities) {
-  console.log(activity);
-}
-
-console.log(activities.map(activity => {
-  return 'Zabeer ' + activity;
-}));
-
-
-console.log(activities.map(activity => 'Zabeer ' + activity+'s'));
-
-
-console.log(activities);
-
-
-//map will return complete a new array without modifying the original one.
-//map always take a function where we will define how to edit the existing array. it will perform action on each element of the array
-//and return the updated array.
+//Object and array are reference types in javascript. That is why we can still change the const array by push method
+//wihtout violating the rule that 'a const can not be changed'. As array is a reference/pointer type,
+//it is just containing the address that is pointing to some premetive value. Premetive type are the address that directly contains some value.
+//Arrays and Objects are reference types and variables are premetive types. 
