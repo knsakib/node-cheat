@@ -5,10 +5,7 @@ const person = {
     console.log('Hi, I am ' + this.name);
   }
 };
-const activies = ['Eat', 'Play'];
 
-activies.push('Sleep');
-console.log(activies);
 
 const copiedArray = activies.slice(); //copied in a new array in immutable way not chaging the old one
 console.log(copiedArray);
