@@ -33,7 +33,7 @@ console.log(name,age);
 //vriables that we can use later.
 
 
-const [activities1, activities2] =  activies;//Arrayt Desturtering
+const [activities1, activities2] =  activies;//Array Destructuring
 console.log(activities1, activities2);
 //vairable/array destructuring. Instead of curly braces we will square bracket.
 //in array we can choose any name we want. Because in array the element has no name.
