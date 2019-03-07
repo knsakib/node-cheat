@@ -1,52 +1,42 @@
-const name = 'Zabeer';
-let age = 2;
+const http=require('http');
 
 
-function baby(userName, userAge){
-  return(
-    userName + ' is ' + userAge + ' years ' + 'old'
-  );
-}
-//This is regular/conventinal way of defining function
-console.log(baby(name, age));
+// function reqListener(req, res){
+//
+// }
+//
+// http.createServer(reqListener);
 
 
-const baby1 = function (userName, userAge){
-  return(
-    userName + ' is ' + userAge + ' years ' + 'old'
-  );
-}
-//This is an example of annonymous function. Because the variable baby1 is function
-//which does not have any name
-console.log(baby1(name, age));
+
+// http.createServer(function(req, res){
+//
+// });
 
 
-const baby2 = (userName, userAge) => {
-  return(
-    userName + ' is ' + userAge + ' years ' + 'old'
-  );
-}
-//This is an example arrow function. We remove the the word 'function'
-//and place arrow before curly braces. However, other than shortform
-//it has special feature regrading 'this' keyword. Arrow / => function bind the
-//reference of 'this' keyword with the object where 'this' has been called/referenced
-//meaning arrow function will keep the scope of 'this' where the function is defined
-//and not from where it is executed or who executed. Without arrow 'this' refers to the sope of the object
-//where it is executed or who executed.
-console.log(baby2(name, age));
+
+const server = http.createServer((req, res)=>{
+  console.log(req.url, req.method, req.headers);
+});
+
+server.listen(3000);
 
 
-const baby3 = (userName, userAge) => userName + ' is ' + userAge + ' years ' + 'old';
-//if arrow function has only one statement we can omit the curly braces and hence if we omit curly braces
-//we need to also remove the return keyword.
-console.log(baby3(name, age));
+//Eventloop: node process keeps on running as long as there are event listeners registered. Node.js manage these kind of eveny loop
 
 
-const baby4 = userAge => 'Zabeer' + ' is ' + userAge + ' years ' + 'old';
-//if we have only one argument we can even shorten the function by remove the parenthesis
-console.log(baby4(age));
-
-
-const baby5 = () => 'Zabeer' + ' is ' + '2' + ' years ' + 'old';
-//However if we do not have any argument we have to use ()
-console.log(baby5());
+//Console Log Output:
+// GET { host: 'localhost:3000',
+//   connection: 'keep-alive',
+//   'cache-control': 'max-age=0',
+//   'upgrade-insecure-requests': '1',
+//   'user-agent':   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+// accept:   'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+//   'accept-encoding': 'gzip, deflate, br',
+//   'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
+//   cookie:
+//    'G_AUTHUSER_H=0;
+// _csrf=kKlp2ZHsDbnvmDyrD2JbprpL;
+// oauth2_authentication_csrf=MTU1MDU1MDUxMnxEdi1CQkFFQ180SUFBUkFCRUFBQVB2LUNBQUVHYzNSeWFXNW5EQVlBQkdOemNtWUdjM1J5YVc1bkRDSUFJR013T1RRNU9UTmtNekV4WkRRNE5UZzVORFF5WW1Sa016RTBNbU00TVRFenxhxM1L3RIx2Y_lORuVkcOn4Z4vNhF2324EWrUEWPUSlA==;
+// connect.sid=s%3Am3_ZDlrZeqTG9xpGoQby0mgIgL4sQ_Ev.cZCqCKwqOINbmDq09BPCzBYNFXkDHfR0YkkSdHcZ894;
+// oauth2_consent_csrf=MTU1MDU1MDUxOXxEdi1CQkFFQ180SUFBUkFCRUFBQVB2LUNBQUVHYzNSeWFXNW5EQVlBQkdOemNtWUdjM1J5YVc1bkRDSUFJR1ZoTmpZd09UVmlPRFJrTWpSbU56TmhOMlptTWpsbE5ETTJNRGRpTTJJd3xBhU7hroS43xks7zkzqPPkD2xvAVcqpk-jCH0J3SWjhw==' }
