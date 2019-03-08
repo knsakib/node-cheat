@@ -18,6 +18,16 @@ const server = http.createServer((req, res)=>{
   return res.end();
   //it will quite the function after here as it is a return statement. because we dont want to move next
 }
+//if the request method is GET in the request url, there is no '/message', then the follwing code runs
+if (url==='/message' && method==='POST'){
+
+  fs.writeFileSync('message.text', 'DUMMY');
+  res.statusCode=302;
+  res.setHeader('Location', '/');
+  //it is redirected to '/' and This is how we REDIRECTED the request to localhost 
+  return res.end();
+  //302 is for redirect
+}
 res.setHeader('Content-Type', 'text/html');
 res.write('<html>');
 res.write('<head><title>After Posting the Message</title></head>');
