@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const server = http.createServer((req, res)=>{
   const url=req.url;
-  const method=req.method;
+  
   //we are reading the infoirmation of the request and route the request based on that
   if (url==='/'){
   //'===' means if both type(here it is string) and value matched
