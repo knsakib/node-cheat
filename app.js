@@ -36,15 +36,24 @@ if (url==='/message' && method==='POST'){
     console.log(parsebody); //console @line 25 is a chunk. and this one is 'data chunk'.
     const message= parsebody.split('=')[1];
     //when we create server it implecitely creates a event listener for us, for exmple on method
-    fs.writeFileSync('message.text', message);
+    // fs.writeFileSync('message.text', message);
+    //fs.writeFile is async amd fs.writeFileSync is synchronous. That means it will finish wirting file first. Then the it will move to next code.
+    //This is samll data and fast. But for learger data, it can take time. In sync operation, other users request will not be even handled untile that operation is done.
+    //That is why for big data we should use writeFile. But it has a third argument and it is a call back function, that receives an error object.
+    //But here we are handling any error. This is how even driven code works. We are not blocking the code. Other code runs. When we are done with corresponding code
+    //It is then handled by call back function.  
+    fs.writeFile('message.text', message, ()=>{
+      res.statusCode=302;
+      res.setHeader('Location', '/');
+      //it is redirected to '/' and This is how we REDIRECTED the request to localhost
+      return res.end();
+      //302 is for redirect
+      //This code should only when it si done writing the file.
+    });
+
   });
 
 
-  res.statusCode=302;
-  res.setHeader('Location', '/');
-  //it is redirected to '/' and This is how we REDIRECTED the request to localhost
-  return res.end();
-  //302 is for redirect
 }
 res.setHeader('Content-Type', 'text/html');
 res.write('<html>');
