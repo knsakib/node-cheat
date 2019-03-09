@@ -31,9 +31,9 @@ const requestHandler = (req, res) =>{
       //is simply data chunk we received.
       console.log(chunk);
       body.push(chunk);
-    })
+    });
 
-    req.on('end',()=>{ //end listener will be fired when all the data will be parsed.
+    return req.on('end',()=>{ //end listener will be fired when all the data will be parsed.
       const parsebody = Buffer.concat(body).toString() //Buffer object is avilable globally by node.js
       //incming/request data is sent as stream of data. And this data is read by chunks. if the data is longer for exmple, file upload this data is sent by chunks
       //Buffer is construct to some some chuks of data that will allow us to work on the data, the full set of data reaches
@@ -46,18 +46,18 @@ const requestHandler = (req, res) =>{
       //That is why for big data we should use writeFile. But it has a third argument and it is a call back function, that receives an error object.
       //But here we are handling any error. This is how even driven code works. We are not blocking the code. Other code runs. When we are done with corresponding code
       //It is then handled by call back function.
-      fs.writeFile('message.text', message, ()=>{
+      fs.writeFile('message.text', message, err => {
         res.statusCode=302;
         res.setHeader('Location', '/');
         //it is redirected to '/' and This is how we REDIRECTED the request to localhost
         return res.end();
         //302 is for redirect
-        //This code should only when it si done writing the file.
+        //This code should run only when it is done writing the file.
       });
 
     });
 }
-
+  //This below code will not show as we are redirecting the page @line51 inside the return statement 
   res.setHeader('Content-Type', 'text/html');
   res.write('<html>');
   res.write('<head><title>After Posting the Message</title></head>');
@@ -67,8 +67,15 @@ const requestHandler = (req, res) =>{
 
 };
 
+//module.exports=requestHandler;
+
 module.exports = {
   handler: requestHandler,
   someText: 'Some hard coded text'
 };
 //we can export anything here. For example and object of key, value pair. Here we export the requestHandler function.
+
+
+// module.exports.handler = requestHandler;
+// module.exports.someText = "someText"
+// We can also export like above
