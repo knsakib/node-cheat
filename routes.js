@@ -68,3 +68,4 @@ const requestHandler = (req, res) =>{
 };
 
 module.exports=requestHandler;
+//we can export anything here. For example and object of key, value pair. Here we export the requestHandler function. 
