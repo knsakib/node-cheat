@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/knsakib/node-cheat/issues"
   },
-  "homepage": "https://github.com/knsakib/node-cheat#readme"
+  "homepage": "https://github.com/knsakib/node-cheat#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
 }
