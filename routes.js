@@ -18,7 +18,7 @@ const requestHandler = (req, res) =>{
     res.setHeader('Content-Type', 'text/html');
     res.write('<html>');
     res.write('<h1>The List of Users</h1>');
-    res.write('<body><ul><li>user1</li><li>user2</li></ul></body>');
+    res.write('<body><ul><li>user1</li><li>user2</li><li>user3</li></ul></body>');
     res.write('</html>');
     return res.end();
   }
