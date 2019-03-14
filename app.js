@@ -6,7 +6,12 @@ const app = express();
 const adminRoutes =  require('./routes/admin');
 const shopRoutes =  require('./routes/shop');
 
-app.use(adminRoutes);
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use('/admin', adminRoutes);
+//we want to make all the adminRoutes under /admin path. So we can do this here like this. We need not to define this prefix /admin/ path in app.use, get or post
+//in the admin.js. However, as the path is now /admin/ we should update the form action in admin.js
+
 app.use(shopRoutes);
 //we can use admminRoutes or shopRoutes as middlewares
 //In general here the order of app.us matters. But here in specific it does not matter even we switch the order as we use only router.get in shop.js
@@ -14,6 +19,9 @@ app.use(shopRoutes);
 // other routes, which we do not want.
 //So GET request also resembles exact path. That is why if we used other path, it will not end up / as defined in shop rather will give and error, 'can not get...'
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use((req, res, next)=>{
+    res.status(404).send('<h1>Page Not Found </h1>')
+})
+//Deafult path is '/', so we need not mention. It will work all the not defined path 
 
 app.listen(3000);
