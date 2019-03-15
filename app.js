@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser=require('body-parser');
+const path = require('path');
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use(shopRoutes);
 //So GET request also resembles exact path. That is why if we used other path, it will not end up / as defined in shop rather will give and error, 'can not get...'
 
 app.use((req, res, next)=>{
-    res.status(404).send('<h1>Page Not Found </h1>')
+    res.status(404).sendFile(path.join(__dirname, 'views', 'page-not-found.html'));
 })
 //Deafult path is '/', so we need not mention. It will work all the not defined path 
 
