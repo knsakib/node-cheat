@@ -9,6 +9,10 @@ const shopRoutes =  require('./routes/shop');
 const rootDir = require('./util/path'); 
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
+// serving static files (for example css files). we should treat like we are already static i.e. public folder when we link this files
+// for example link style in html files 
+
 
 app.use('/admin', adminRoutes);
 //we want to make all the adminRoutes under /admin path. So we can do this here like this. We need not to define this prefix /admin/ path in app.use, get or post
