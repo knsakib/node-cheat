@@ -4,7 +4,18 @@ const path = require('path');
 
 const app = express();
 
-const adminRoutes =  require('./routes/admin');
+app.set('view engine', 'pug');
+//this is to set the template. The value pug works automatically 
+//here as this template engine ships with built-in expres support and 
+//auto register itself with express.  
+app.set('views', 'views');
+//this is to where to find the template. the deafult settings is view
+//folder. So if we keep the template in view folder it may not 
+//need to tell again. this is for if we put template in different 
+//folder.  
+
+
+const adminRoutesAndData =  require('./routes/admin');
 const shopRoutes =  require('./routes/shop');
 const rootDir = require('./util/path'); 
 
@@ -14,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // for example link style in html files 
 
 
-app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutesAndData.routes);
 //we want to make all the adminRoutes under /admin path. So we can do this here like this. We need not to define this prefix /admin/ path in app.use, get or post
 //in the admin.js. However, as the path is now /admin/ we should update the form action in admin.js
 
