@@ -40,7 +40,7 @@ main{
 .main-header__item a:hover,
 .main-header__item a:active,
 .main-header__item a.active {
-    color: #3e00a1;
+    color: #e1f012;
 }
 
 button {
@@ -54,7 +54,7 @@ button {
 }
 
 button:hover,
-button:acrive {
+button:active {
     background-color: purple;
     color: white ;
 }

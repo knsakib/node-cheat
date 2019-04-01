@@ -37,7 +37,8 @@ app.use(shopRoutes);
 //So GET request also resembles exact path. That is why if we used other path, it will not end up / as defined in shop rather will give and error, 'can not get...'
 
 app.use((req, res, next)=>{
-    res.status(404).sendFile(path.join(rootDir, 'views', 'page-not-found.html'));
+    // res.status(404).sendFile(path.join(rootDir, 'views', 'page-not-found.html'));
+    res.status(404).render('page-not-found', {pageTitle: 'Page Not Found'});
 })
 //Deafult path is '/', so we need not mention. It will work all the not defined path 
 
