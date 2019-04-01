@@ -1,10 +1,21 @@
 const express = require('express');
 const bodyParser=require('body-parser');
 const path = require('path');
+const expressHbs=require('express-handlebars');
+//Handlebars is not automatically register or included in express
+//we need to import it manually  
 
 const app = express();
 
-app.set('view engine', 'pug');
+
+app.engine('hbs', expressHbs());
+//Handlebars is not automatically register or included in express
+//we need to import it manually  
+app.set('view engine', 'hbs');
+
+
+//pug:
+//app.set('view engine', 'pug');
 //this is to set the template. The value pug works automatically 
 //here as this template engine ships with built-in expres support and 
 //auto register itself with express.  

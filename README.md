@@ -17,18 +17,11 @@ We need pass keyname as second parameter to send dynamic
 data and render it to template. 
 ```
 
-### Pug Layout to maintain Common Layouts 
+### handlebars Philosophy
 ```
-To maintain common layouts we created layouts/main-layout
-where we can include the common template sections. We can do
-this by including 'block' keyword in the common layout section. 
-Where we can insert extended or dynamic content when we are 
-using this common layout in the other layout temnplate. 
-```
-
-### Show differently in the common layout based on rendering differently
-```
-Fot this we inluded a 3rd param 'path' in line 16 of app.js. 
-Then we use that condition in main-layout. 
+Te cannot put any logic we can just check the value of the logic we put here. 
+This is in a sense good because in that case we are forced to put logic
+in our node.js where it should be and template engine will be used only
+for rendering purpose.  
 ```
 
