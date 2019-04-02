@@ -8,11 +8,11 @@ const expressHbs=require('express-handlebars');
 const app = express();
 
 
-app.engine('hbs', expressHbs());
+app.engine('hbs', expressHbs({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname:'hbs'}));
 //Handlebars is not automatically register or included in express
 //we need to import it manually  
 app.set('view engine', 'hbs');
-
+//layoutsDir and main-layout is to specify if location and files are different than default 
 
 //pug:
 //app.set('view engine', 'pug');

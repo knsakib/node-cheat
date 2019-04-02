@@ -25,3 +25,12 @@ in our node.js where it should be and template engine will be used only
 for rendering purpose.  
 ```
 
+
+### Layout in handlebars
+```
+We can use common layout in Handlebars. But we need specify main layour name in
+app.js. However, for conditional render in common layout, the logic should be 
+in node side. We will check the value that is passed in main layout and 
+check the value tru e or false to render different layout in different 
+condition. 
+```

@@ -14,7 +14,14 @@ router.get('/', (req, res, next)=>{
     //path by concatenate different parameter from its argument. DO not use '/' as it will take of it automatically. 
 
     //In the above code to render a template instead of sending html file we will render the file as follows
-    res.render('shop', {prods: products, pageTitle: "My Shop", path: '/', hasProducts: products.length > 0});
+    res.render('shop', {
+        prods: products, 
+        pageTitle: "My Shop", 
+        path: '/', 
+        hasProducts: products.length > 0,
+        activeShop: true,
+        productCSS: true
+    });
     // the thris avriable 'path' is added to check the condition in the main-layout and render
     //different content based on the path
 });
