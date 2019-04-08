@@ -5,6 +5,8 @@ const path = require('path');
 //Handlebars is not automatically register or included in express
 //we need to import it manually  
 
+const errorController = require('./controllers/error');
+
 const app = express();
 
 
@@ -30,7 +32,8 @@ app.set('views', 'views');
 //folder.  
 
 
-const adminRoutesAndData =  require('./routes/admin');
+// const adminRoutesAndData =  require('./routes/admin');
+const adminRoutes =  require('./routes/admin');
 const shopRoutes =  require('./routes/shop');
 const rootDir = require('./util/path'); 
 
@@ -40,9 +43,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // for example link style in html files 
 
 
-app.use('/admin', adminRoutesAndData.routes);
+// app.use('/admin', adminRoutesAndData.routes);
 //we want to make all the adminRoutes under /admin path. So we can do this here like this. We need not to define this prefix /admin/ path in app.use, get or post
 //in the admin.js. However, as the path is now /admin/ we should update the form action in admin.js
+
+app.use('/admin', adminRoutes);
+//we sperated the controller from model and put it inside controllers folder.
+
 
 app.use(shopRoutes);
 //we can use admminRoutes or shopRoutes as middlewares
@@ -51,10 +58,7 @@ app.use(shopRoutes);
 // other routes, which we do not want.
 //So GET request also resembles exact path. That is why if we used other path, it will not end up / as defined in shop rather will give and error, 'can not get...'
 
-app.use((req, res, next)=>{
-    // res.status(404).sendFile(path.join(rootDir, 'views', 'page-not-found.html'));
-    res.status(404).render('page-not-found', {pageTitle: 'Page Not Found', path: ''});
-})
+app.use(errorController.pageNotFound)
 //Deafult path is '/', so we need not mention. It will work all the not defined path 
 
 app.listen(3000);

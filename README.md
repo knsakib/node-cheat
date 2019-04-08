@@ -9,18 +9,29 @@ For template engine we will use view engine key
 and render template name as value. 
 ```
 
-### Where to render
+### MVC
 ```
-For Example, instead of res.sendFile method in shop.js
-line 10, we will use res.render method (in line 16).
-We need pass keyname as second parameter to send dynamic 
-data and render it to template. 
+Models: Objects tha is resposnible to represent the data. 
+For example, fetching, saving data. Memory, databases 
+falls under this. 
+
+Views: Views are responsible for rendering views/html etc. 
+templating engine falls unbder this. 
+
+Controllers: The connection point between models and views. 
+Views should not care about the application logic. Model
+cares about data. So, Controllers works in between for
+example, after saving/fetching the data it will then 
+pass that to views. Routes falls under this.    
 ```
 
-### EJS Rendering
+### Sperating controllers
 ```
-When are importing partials we can use <%= %> to render it as text
-instead of html to avoid CSRF attack. With <%- %> it will render it 
-as HTML. If there is any variables in the partials it will work with
-<%- %>
+We want to separate the controller now which is 
+now embeded in the route. for example, if 
+router.get(sth), then res.render(sth). So,
+we took (req, res, next)=>{ } from admin.js
+route and put inside the controllers/product.js
+we exported the function there and then will 
+import the function in routes/admin.js
 ```
