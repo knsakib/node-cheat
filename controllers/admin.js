@@ -1,8 +1,5 @@
-// const products = [];
-//we moved it to the models where we defined products and 
-//import the instance of the that class
-
 const Product = require('../models/product');
+
 
 exports.getAddProduct = (req, res, next)=>{
     // res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
@@ -10,7 +7,7 @@ exports.getAddProduct = (req, res, next)=>{
     //path by concatenate different parameter from its argument. DO not use '/' as it will take of it automatically. 
 
     // Instead of sendFile we will render it
-    res.render('add-product', {
+    res.render('admin/add-product', {
         pageTitle: 'Add Product', 
         path: '/admin/add-product',
         productCSS: true,
@@ -30,29 +27,16 @@ exports.postAddProduct = (req, res, next)=>{
     res.redirect('/')
 }
 
-exports.getProducts = (req, res, next)=>{
-    // console.log(adminData.products);
-    // const products = adminData.products;
-    // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
-    //This is absolute path from OS if we do not use path module and path join, path.join returns a absolute 
-    //path to this folder where this file is located. It creates 
-    //path by concatenate different parameter from its argument. DO not use '/' as it will take of it automatically. 
 
-    //In the above code to render a template instead of sending html file we will render the file as follows
+exports.getProducts = (req, res, next)=>{
+   
     Product.fetchAll( products => {
-        //we used the static method to fetch the product
-    //because here we dont want to create new product. 
-    // heer we want to fetch all the product
-    res.render('shop', {
+    
+    res.render('admin/product-list', {
         prods: products, 
-        pageTitle: "My Shop", 
-        path: '/', 
-        hasProducts: products.length > 0,
-        activeShop: true,
-        productCSS: true
+        pageTitle: "Admin Products", 
+        path: '/admin/product-list', 
     });
-    // the thris avriable 'path' is added to check the condition in the main-layout and render
-    //different content based on the path
+    
     });
 };
-

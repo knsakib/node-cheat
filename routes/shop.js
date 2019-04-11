@@ -1,7 +1,7 @@
 const path = require('path');
 const express =  require('express');
 
-const productsController = require('../controllers/products');
+const shopController = require('../controllers/shop');
 //we imported the controller here
 
 const router = express.Router();
@@ -9,6 +9,16 @@ const router = express.Router();
 // const adminData = require('./admin'); 
 //we do not need this anymore after we created controllers
 
-router.get('/', productsController.getProducts);
+router.get('/', shopController.getIndex);
+
+router.get('/product-list', shopController.getProducts);
+
+router.get('/cart', shopController.getCart);
+
+router.get('/checkout', shopController.getCheckout);
+
+
+
+
 
 module.exports=router;
