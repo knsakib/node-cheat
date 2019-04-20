@@ -8,14 +8,22 @@
 }
 
 .form-control label,
-.form-control input {
+.form-control input
+.form-control textarea {
     display: block;
     /* nested label and nested input will take full avilable width */
     width: 100%;
+    border-radius: .25rem;
 } 
 
-.form-control input {
+.form-control input,
+.form-control textarea {
     border: 1px solid #5fa06a;
     font: inherit;
     border-radius: 2px;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+    outline-color: azure;
 }
