@@ -8,7 +8,7 @@ const rootDir = require('../util/path');
 const router = express.Router();
 //This will create a similar instance/object of express like app object. We can use router instead of app in the routing operation
 
-router.get('/admin/product-list', adminController.getProducts);
+router.get('/product-list', adminController.getProducts);
 
 router.get('/add-product', adminController.getAddProduct);
 
