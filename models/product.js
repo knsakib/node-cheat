@@ -28,9 +28,16 @@ module.exports = class Product {
         this.imageUrl = imageUrl;
         this.description = description;
         this.price = price;
+
     }
 
     save(){
+        //we are adding a new propertry to our product model. So, when we save it 
+        //we will have a unique product ID. this will be used to retrive a specific 
+        //product data to edit or delete by admin.
+        this.id=Math.random().toString();
+
+
         // products.push(this); this is for array 
         getProductsFromFile(products => {
             products.push(this);
@@ -46,6 +53,17 @@ module.exports = class Product {
         //of the class
         
         getProductsFromFile(cb);
+    }
+
+    static findById(id, cb){
+        getProductsFromFile(products=>{
+
+            //it will return the product if it matched our id we supplied
+            const product = products.find(p => p.id === id);
+            
+            //it is synchronous function, we added cb just after we fetched the product
+            cb(product);
+        });
     }
 
 };

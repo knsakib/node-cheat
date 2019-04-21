@@ -28,6 +28,21 @@ exports.getProducts = (req, res, next)=>{
     });
 };
 
+exports.getProduct = (req, res, next) => {
+    const prodId = req.params.productId;
+    // we used productId in request pamameter
+    console.log(prodId);
+    Product.findById(prodId, product => {
+        console.log(product);
+        res.render('shop/product-detail', {
+            product: product, 
+            pageTitle: product.title,
+            path: '/products'
+        });
+    });
+    // res.redirect('/');
+};
+
 exports.getIndex = (req, res, next)=>{
     
     Product.fetchAll( products => {
@@ -46,6 +61,12 @@ exports.getOrders = (req, res, next)=>{
         pageTitle: "Your Orders", 
         path: '/orders', 
     });
+};
+
+exports.postCart = (req, res, next) => {
+    const prodId =  req.body.productId;
+    console.log(prodId);
+    res.redirect('/cart');
 };
 
 exports.getCart = (req, res, next)=>{
