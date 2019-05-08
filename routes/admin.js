@@ -14,6 +14,11 @@ router.get('/add-product', adminController.getAddProduct);
 
 router.post('/add-product', adminController.postAddProduct);
 
+router.get('/edit-product/:productId', adminController.getEditProduct);
+
+router.post('/edit-product');
+
+
 //The GET and POST methods are different so these are two different routes 
 
 // module.exports=router;

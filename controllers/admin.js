@@ -7,11 +7,10 @@ exports.getAddProduct = (req, res, next)=>{
     //path by concatenate different parameter from its argument. DO not use '/' as it will take of it automatically. 
 
     // Instead of sendFile we will render it
-    res.render('admin/add-product', {
+    res.render('admin/edit-product', {
         pageTitle: 'Add Product', 
         path: '/admin/add-product',
-        productCSS: true,
-        activeAddProduct: true
+        editing: false
     });
     //the thir parameter is for checking the condition in layouts/main-layout.pug
     //The 4th param hasProducts is for handlebar conditional rendering. Because in Handlebars
@@ -32,7 +31,31 @@ exports.postAddProduct = (req, res, next)=>{
     
     product.save();
     res.redirect('/')
-}
+};
+
+
+exports.getEditProduct = (req, res, next) => {
+    const editMode = req.query.edit; //undefined is treated as false 
+    if (!editMode) {
+      return res.redirect('/');
+    }
+    const prodId = req.params.productId;
+    Product.findById(prodId, product => {
+      if (!product) {
+        return res.redirect('/');
+      }
+      res.render('admin/edit-product', {
+        pageTitle: 'Edit Product',
+        path: '/admin/edit-product',
+        editing: editMode, //editing: true
+        product: product
+      });
+    });
+  };
+
+exports.postEditProduct = (req, res, next) =>{
+  
+};
 
 
 exports.getProducts = (req, res, next)=>{
